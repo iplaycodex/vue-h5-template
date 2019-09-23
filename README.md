@@ -1,66 +1,113 @@
-# vue-webpack-boilerplate
+# install dependencies
+npm install or cnpm install
 
-> A full-featured Webpack setup with hot-reload, lint-on-save, unit testing & css extraction.
+# serve with hot reload at localhost:8080
+npm run dev
 
-> This template is Vue 2.0 compatible. For Vue 1.x use this command: `vue init webpack#1.0 my-project`
+# build for production with minification
+npm run build
 
-## Documentation
+# build for production and view the bundle analyzer report
+npm run build --report
+#其他的一些配置项
 
-- [For this template](http://vuejs-templates.github.io/webpack): common questions specific to this template are answered and each part is described in greater detail
-- [For Vue 2.0](http://vuejs.org/guide/): general information about how to work with Vue, not specific to this template
+#1.安装babel-plugin-import,实现组件懒加载
+npm install babel-plugin-import --save-dev
 
-## Usage
+#在 .babelrc 或 babel-loader 中添加插件配置 // 注意：webpack 1 无需设置 libraryDirectory。
+{
+  "plugins": [
+    ["import", {
+      "libraryName": "vant",
+      "libraryDirectory": "es",
+      "style": true
+    }]
+  ]
+}
 
-This is a project template for [vue-cli](https://github.com/vuejs/vue-cli). **It is recommended to use npm 3+ for a more efficient dependency tree.**
+#参考网站:https://www.youzanyun.com/zanui/vant#/zh-CN/quickstart
 
-``` bash
-$ npm install -g vue-cli
-$ vue init webpack my-project
-$ cd my-project
-$ npm install
-$ npm run dev
-```
+#2.安装 less loader
+终端执行命令:cnpm/npm install less --save
+终端执行命令:cnpm/npm install less-loader --save
+然后修改webpack.base.conf.js 中的module.rules
+{
+    test: /\.less$/,
+    loader: 'less-loader' // compiles Less to CSS
+},
+即可
 
-This will scaffold the project using the `master` branch. If you wish to use the latest version of the webpack template, do the following instead:
+#3.安装 px2rem loader
+终端执行命令:cnpm/npm install postcss-px2rem --save 和 cnpm/npm install px2rem-loader --save 配置方法如下所示:
+build目录下vue-loader.conf.js中，做如下修改：
+transformToRequire:{
+    postcss:[require('postcss-px2rem')({'remUnit':75,'baseDpr':2})] //设计稿尺寸/10
+}
 
-``` bash
-$ vue init webpack#develop my-project
-```
+在不需要进行转换的地方如下配置:
+.selector {
+    width: 150px;
+    height: 64px; /*px*/    //保持px单位
+    font-size: 28px; /*px*/
+    border: 1px solid #ddd; /*no*/ //边框1px不变
+}
 
-:warning: **The develop branch is not considered stable and can contain bugs or not build at all, so use at your own risk.**
+更加详细的配置请参考:https://www.cnblogs.com/lulianlian/p/7656184.html
 
-The development server will run on port 8080 by default. If that port is already in use on your machine, the next free port will be used.
+#4.安装fastclick 目的:处理移动端click事件300毫秒延迟
+终端执行命令:cnpm/npm install fastclick --save
+然后在main.js中导入即可!
+import fastClick from 'fastclick';
 
-## What's Included
+fastClick.attach(document.body)
 
-- `npm run dev`: first-in-class development experience.
-  - Webpack + `vue-loader` for single file Vue components.
-  - State preserving hot-reload
-  - State preserving compilation error overlay
-  - Lint-on-save with ESLint
-  - Source maps
+#5.安装 vuex
+终端执行命令:cnpm/npm install vuex --save
+然后在main.js 中
+#import store from './store'
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  store,    //添加即可
+  components: { App },
+  template: '<App/>'
+})
 
-- `npm run build`: Production ready build.
-  - JavaScript minified with [UglifyJS v3](https://github.com/mishoo/UglifyJS2/tree/harmony).
-  - HTML minified with [html-minifier](https://github.com/kangax/html-minifier).
-  - CSS across all components extracted into a single file and minified with [cssnano](https://github.com/ben-eb/cssnano).
-  - Static assets compiled with version hashes for efficient long-term caching, and an auto-generated production `index.html` with proper URLs to these generated assets.
-  - Use `npm run build --report`to build with bundle size analytics.
+#6.安装axios http请求库
+终端执行命令:cnpm/npm install axios --save
+在需要http请求的页面 import axios from 'axios' 即可
 
-- `npm run unit`: Unit tests run in [JSDOM](https://github.com/tmpvar/jsdom) with [Jest](https://facebook.github.io/jest/), or in PhantomJS with Karma + Mocha + karma-webpack.
-  - Supports ES2015+ in test files.
-  - Easy mocking.
+#7.安装 babel-polyfill 解决低版本浏览器的兼容
+终端执行命令:cnpm/npm install babel-polyfill --save
 
-- `npm run e2e`: End-to-end tests with [Nightwatch](http://nightwatchjs.org/).
-  - Run tests in multiple browsers in parallel.
-  - Works with one command out of the box:
-    - Selenium and chromedriver dependencies automatically handled.
-    - Automatically spawns the Selenium server.
+#8.安装qs 将axios发送的数据格式转换为form-data格式
+终端执行命令:cnpm/npm install qs --save
+使用方法也很简单,看下面的图示:
+import qs from 'qs'
 
-### Fork It And Make Your Own
+// 将请求数据转换为form-data格式
+// 这里不用qs，用FormData也可以，不赘述
+var data = qs.stringify({
+  currentPage: "0",
+  pageSize: "10",
+  type: "1",
+});
 
-You can fork this repo to create your own boilerplate, and use it with `vue-cli`:
+axios.post('/url', data)
+.then(function (response) {
+    //
+})
 
-``` bash
-vue init username/repo my-project
-```
+#9.添加moment.js
+终端执行命令:cnpm/npm install moment --save 即可
+
+#10.添加vue-meta
+作用:优雅的修改HTML的头部标签
+
+使用方法很简单,在需要修改的页面中添加即可:
+metaInfo() {
+  return {
+    title: this.title
+  };
+}
