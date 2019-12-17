@@ -3,10 +3,10 @@
     ["env", {
       "modules": false,
       "targets": {
-        "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+        "browsers": ["Android >= 4.0", "iOS >= 7"]
       }
     }],
-    "stage-2"
+    "stage-0"
   ],
   "plugins": ["transform-vue-jsx", "transform-runtime",    [
     "import",

@@ -1,16 +1,18 @@
 /**
- * 封装axios,暴露GET,POST方法
+ * axios
+ * use GET,POST method to load server data
+ * author:allenliu
  */
 import axios from "axios";
 import qs from "qs";
 import { Toast } from "vant";
-
-// 配置
+/**
+ * axios base config
+ */
 axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8";
 axios.defaults.timeout = 10 * 1000;
 axios.defaults.baseURL = "yourBaseUrl";
 
-// 请求拦截器
 var num = 0;
 axios.interceptors.request.use(
     config => {
@@ -24,8 +26,6 @@ axios.interceptors.request.use(
         return Promise.error(error);
     }
 );
-
-// 响应拦截器
 axios.interceptors.response.use(
     response => {
         num--;
@@ -34,8 +34,8 @@ axios.interceptors.response.use(
         }
         if (response.status === 200) {
             return Promise.resolve(response);
-        }else{
-          // 针对不同的错误码进行相关处理
+        } else {
+            // do something...
         }
     },
     error => {

@@ -18,25 +18,22 @@ import "./styles/border.css";
 import "vant/lib/index.css";
 import "./styles/theme.less";
 import fastClick from "fastclick";
-import http from "./services/http";
-import VueJsonp from "vue-jsonp";
-import { Button, NavBar, Tabbar, TabbarItem,Skeleton } from "vant";
-Vue.use(Button)
-  .use(NavBar)
-  .use(Tabbar)
-  .use(TabbarItem)
-  .use(Skeleton);
-Vue.use(VueJsonp);
-
-Vue.config.productionTip = false;
-
+/**
+ * import base component to main.js from vant ui-lib
+ */
+import { Button, NavBar } from "vant";
+Vue.use(Button).use(NavBar);
+/**
+ * apply fastclick
+ */
 fastClick.attach(document.body);
-Vue.prototype.$http = http;
-
+/**
+ * init BUS
+ */
 let BUS = new Vue();
 Vue.prototype.BUS = BUS;
 
-
+Vue.config.productionTip = false;
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
