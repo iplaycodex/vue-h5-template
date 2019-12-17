@@ -6,7 +6,7 @@
         "browsers": ["Android >= 4.0", "iOS >= 7"]
       }
     }],
-    "stage-1"
+    "stage-0"
   ],
   "plugins": ["transform-vue-jsx", "transform-runtime",    [
     "import",
@@ -19,7 +19,7 @@
   {{#if_or unit e2e}},
   "env": {
     "test": {
-      "presets": ["env", "stage-1"]{{#if_eq runner "karma"}},
+      "presets": ["env", "stage-0"]{{#if_eq runner "karma"}},
       "plugins": ["transform-vue-jsx", "istanbul"]{{/if_eq}}{{#if_eq runner "jest"}},
       "plugins": ["transform-vue-jsx", "transform-es2015-modules-commonjs", "dynamic-import-node"]{{/if_eq}}
     }
