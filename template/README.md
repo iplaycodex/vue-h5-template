@@ -1,36 +1,33 @@
-# {{ name }}
+### TIPS
+本项目是一个vue-h5的模板项目,已经配好了一些移动端开发的依赖和一些loader,方便快速开发
 
-> {{ description }}
+### HOW TO USE THIS TEMPLATE
+vue init wawsc5354524/vue-h5-template project-name
 
-## Build Setup
+根据需求配置即可,然后进入下面的流程:
 
-``` bash
-# install dependencies
-npm install
+### npm i
+npm i
+>推荐使用3n安装法,即安装:nvm,npm,nrm.使用 nrm 可以很方便的切换源
 
-# serve with hot reload at localhost:8080
+### run in dev
 npm run dev
 
-# build for production with minification
+### build project
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
-{{#unit}}
+### 目前安装的文件
 
-# run unit tests
-npm run unit
-{{/unit}}
-{{#e2e}}
-
-# run e2e tests
-npm run e2e
-{{/e2e}}
-{{#if_or unit e2e}}
-
-# run all tests
-npm test
-{{/if_or}}
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+目前已经集成的类库或插件如下所示:
+|  库| 作用 |
+| --- | --- |
+|`vuex`  |状态管理  |
+|`vue-router`  |路由  |
+|`px2rem loader`  |自动将 px 转换为 rem  |
+|`fastclickex`  |解决移动端点击 300ms 延迟的问题 |
+|`less loader`  |使用less 来做css 的预编译  |
+|`axios`|http 请求|
+|`qs`|格式化请求数据|
+|`moment`|处理时间|
+|`babel-polyfill`|js 垫片|
+|`babel-plugin-import`|vant组件支持懒加载|
