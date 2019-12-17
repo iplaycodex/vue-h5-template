@@ -6,7 +6,7 @@
         "browsers": ["Android >= 4.0", "iOS >= 7"]
       }
     }],
-    "stage-0"
+    "stage-1"
   ],
   "plugins": ["transform-vue-jsx", "transform-runtime",    [
     "import",
