@@ -2,14 +2,14 @@
 本项目是一个vue-h5的模板项目,已经配好了一些移动端开发的依赖和一些loader,方便快速开发
 
 ### HOW TO USE THIS TEMPLATE
-vue init wawsc5354524/vue-h5-template project-name
+vue init iplaycodex/vue-h5-template project-name
 
 根据需求配置即可,然后进入下面的流程:
 
 ### npm i
 npm i
 >推荐使用3n安装法,即安装:nvm,npm,nrm.使用 nrm 可以很方便的切换源
-
+i
 ### run in dev
 npm run dev
 
